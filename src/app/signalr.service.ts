@@ -19,6 +19,11 @@ export class SignalrService {
   pipeline2ActiveComponent: number;
   pipeline3ActiveComponent: number;
   pipeline4ActiveComponent: number;
+  public countCirquiteAtFirthPipeline = 0;
+  public countCirquiteAtSeccondPipeline = 0;
+  public countCirquiteAtThirdPipeline = 0;
+  public countCirquiteAtFourthPipeline = 0;
+
 
   constructor(private http: HttpClient) { }
 
@@ -80,16 +85,25 @@ export class SignalrService {
       console.log('message received from Hub');
       if ( data.piplineId === 0){
         this.pipeline1ActiveComponent = data.componentId;
+        if ( data.componentId === 0){
+          this.countCirquiteAtFirthPipeline++;
+        }
       }
       if ( data.piplineId === 1){
         this.pipeline2ActiveComponent = data.componentId;
-      }
+        if ( data.componentId === 0){
+          this.countCirquiteAtSeccondPipeline++;
+        }      }
       if ( data.piplineId === 2){
         this.pipeline3ActiveComponent = data.componentId;
-      }
+        if ( data.componentId === 0){
+          this.countCirquiteAtThirdPipeline++;
+        }      }
       if ( data.piplineId === 3){
         this.pipeline4ActiveComponent = data.componentId;
-      }
+        if ( data.componentId === 0){
+          this.countCirquiteAtFourthPipeline++;
+        }      }
       this.messages.push('Pipeline #' + data.piplineId + 'Component #' + data.componentId );
     });
     this.hubConnection.on('newUserConnected', _ => {

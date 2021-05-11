@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SignalrService } from './signalr.service';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { SignalrService } from './signalr.service';
 export class AppComponent implements OnInit {
   title = 'chat-ui';
   text: string = "";
+  panelOpenState = false;
+
   pipeline1ActiveComponent: number;
   pipeline2ActiveComponent: number;
   pipeline3ActiveComponent: number;
