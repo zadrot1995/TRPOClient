@@ -15,6 +15,10 @@ export class SignalrService {
   private connectionUrl = 'https://localhost:44319/signalr';
   private apiUrl = 'https://localhost:44319/api/chat';
   public isCenceled = false;
+  pipeline1ActiveComponent: number;
+  pipeline2ActiveComponent: number;
+  pipeline3ActiveComponent: number;
+  pipeline4ActiveComponent: number;
 
   constructor(private http: HttpClient) { }
 
@@ -74,7 +78,19 @@ export class SignalrService {
     });
     this.hubConnection.on('messageReceivedFromHub', (data: PipelineDto) => {
       console.log('message received from Hub');
-      this.messages.push(data.Information.toString());
+      if ( data.piplineId === 0){
+        this.pipeline1ActiveComponent = data.componentId;
+      }
+      if ( data.piplineId === 1){
+        this.pipeline2ActiveComponent = data.componentId;
+      }
+      if ( data.piplineId === 2){
+        this.pipeline3ActiveComponent = data.componentId;
+      }
+      if ( data.piplineId === 3){
+        this.pipeline4ActiveComponent = data.componentId;
+      }
+      this.messages.push('Pipeline #' + data.piplineId + 'Component #' + data.componentId );
     });
     this.hubConnection.on('newUserConnected', _ => {
       console.log('new user connected');

@@ -8,6 +8,11 @@ import { SignalrService } from './signalr.service';
 export class AppComponent implements OnInit {
   title = 'chat-ui';
   text: string = "";
+  pipeline1ActiveComponent: number;
+  pipeline2ActiveComponent: number;
+  pipeline3ActiveComponent: number;
+  pipeline4ActiveComponent: number;
+
   isStarted = false;
   constructor(public signalRService: SignalrService) {
 

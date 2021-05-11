@@ -1,7 +1,7 @@
 export class PipelineDto {
 
-  public Information: number;
-  public isProcessCenceled: boolean;
+  public piplineId: number;
+  public componentId: number;
 }
 
 
